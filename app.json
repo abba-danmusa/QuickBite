@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "QuickBite",
-    "slug": "QuickBite",
+    "slug": "quickbite",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "quickbite",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2fd54edc-4814-4825-b70b-db08df20bd03"
+      }
+    },
+    "owner": "abba_danmusa"
   }
 }
