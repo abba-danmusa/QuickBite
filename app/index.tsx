@@ -8,7 +8,7 @@ import { Redirect } from 'expo-router';
 //   // Add other screens here as needed
 // }
 
-const loggedIn = false
+const loggedIn = true
 
 export default function Root() {
   if (loggedIn) {
