@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginVertical: 16,
     marginLeft: 10
   },
 });
