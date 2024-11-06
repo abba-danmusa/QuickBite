@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Lobster',
     // color: 'black'
     color: '#E74C3C', // Tomato red color for the logo
+    textShadowColor: 'rgba(0, 0, 0, 0.3)', // Soft shadow color
+    textShadowOffset: { width: 2, height: 2 }, // Position of the shadow
+    textShadowRadius: 4, // Blurring effect for a softer shadow
   },
 });
 
