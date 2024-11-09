@@ -11,8 +11,8 @@ const HomeScreen: React.FC = () => {
       <View style={styles.container}>
         <Text style={styles.header}>Welcome to QuickBite</Text>
         <DiscoverBanner />
-        <NavButtons />
         <PopularDishes />
+        <NavButtons />
         <CustomersReviews />
       </View>
     </ScrollView>
@@ -22,7 +22,7 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   mainContentContainer: {
     backgroundColor: '#fff',
-    paddingBottom: 50
+    paddingBottom: 100
   },
   container: {
     flex: 1,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
+    fontFamily: 'Lobster',
     marginVertical: 16,
     marginLeft: 10
   },

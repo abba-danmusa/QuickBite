@@ -15,7 +15,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   safeAreaViewContainer: {
     backgroundColor: '#fff',
-    borderBottomColor: '#000',
+    // borderBottomColor: '#000',
     borderWidth: .2,
   },
 });

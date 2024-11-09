@@ -1,13 +1,14 @@
+import { router } from 'expo-router';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function NavButtons() {
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.outlinedButton}>
+      <TouchableOpacity onPress={() => router.push('/menu/menu')} style={styles.outlinedButton}>
         <Text>View Menu</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.outlinedButton} onPress={() => {}}>
-        <Text>Promotions</Text>
+        <Text>Delivery</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.outlinedButton, { backgroundColor: '#000' }]}

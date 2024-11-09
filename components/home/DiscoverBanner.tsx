@@ -49,9 +49,9 @@ const ImageCarousel = () => {
           <View key={index} style={styles.imageContainer}>
             <View style={styles.overlay}>
               <Image source={image.src} style={styles.image} />
-              <TouchableOpacity style={styles.overlayButton}>
+              {/* <TouchableOpacity style={styles.overlayButton}>
                 <Text style={styles.overlayText}>{image.text}</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         ))}
@@ -119,11 +119,13 @@ const styles = StyleSheet.create({
   },
   overlayButton: {
     position: 'absolute',
-    backgroundColor: 'rgba(0, 0, 0, .7)',
+    // backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgba(0, 0, 0, .5)',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 8,
     alignSelf: 'center',
     zIndex: 3,
+    width: '70%',
   },
   overlayText: {
     color: 'white',

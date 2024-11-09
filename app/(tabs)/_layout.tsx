@@ -4,7 +4,8 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import Header from '@/components/home/Header';
-// import { View } from 'react-native';
+import { BlurView } from 'expo-blur'
+import { StyleSheet } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,7 +16,13 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         header: () => <Header />,
         tabBarShowLabel: false,
-      }}>
+        tabBarBackground: () => <BlurView
+          tint="dark"
+          intensity={100}
+          // style={{ flex: 1, backgroundColor: '#fff', position: 'absolute', height: 700 }}
+        />,
+        tabBarStyle: styles.tabBarStyle,
+    }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -33,7 +40,9 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
+          headerShown: false,
+          tabBarStyle: { display: 'none' },
+          tabBarIcon: ({ color, focused }: { color: string; focused: boolean })=> (
             <TabBarIcon
               name={'search'}
               color={Colors[colorScheme ?? 'light'].tint}
@@ -59,6 +68,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
+          headerShown: false,
           tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
             <TabBarIcon
               name={'user'}
@@ -71,3 +81,15 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBarStyle: {
+    position: 'absolute',
+    backgroundColor: '#fff', // Change this from '#CFD7E2' to transparent
+    height: 55,
+    elevation: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderTopWidth: 1,
+  }
+})
