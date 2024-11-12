@@ -1,6 +1,7 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import React from "react";
 import { Styles } from '@/constants/Styles';
+import OrderHistory from './OrderHistory';
 
 const orders = [
   { id: '1', seller: 'Bilnaf Kitchen', name: 'Classic Burger', description: 'Juicy beef patty with cheese Juicy beef patty with cheese Juicy beef patty with cheese Juicy beef patty with cheese Juicy beef patty with cheese Juicy beef patty with cheese', price: '$8.99', image: require('../../assets/images/a.png'), rating: 4.5 },
@@ -35,18 +36,11 @@ export default function SellerProfile() {
       </View>
 
       {/* Order History */}
-      <View style={[styles.section, { paddingHorizontal: 0 }]}>
-        <Text style={[styles.sectionTitle, { paddingHorizontal: 16}]}>Open Orders</Text>
-        <FlatList
-          data={orders}
-          renderItem={renderOrderCard}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          contentContainerStyle={styles.orderCardContainer}
-        />
-        {/* Repeat for more order cards */}
-      </View>
+      <OrderHistory
+        headerTitle="Open Orders"
+        orders={orders}
+        renderOrderCard={renderOrderCard}
+      />
 
       {/* Payment Settings */}
       <View style={styles.section}>
@@ -146,10 +140,6 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 12,
     textAlign: 'center',
-  },
-  orderCardContainer: {
-    padding: 10,
-    gap: 10
   },
   card: {
     backgroundColor: '#fff',

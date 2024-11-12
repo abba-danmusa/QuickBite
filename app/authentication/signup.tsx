@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import GoogleSignInWeb from '@/components/authentication/GoogleSignInWeb';
 import { router } from 'expo-router';
+import { useSignup } from '@/hooks/queries/useAuthentication';
+import toast from '@/utils/toast';
+import Input from '@/components/Input';
 
 type RootStackParamList = {
   SignUp: undefined;
@@ -17,53 +20,71 @@ interface SignUpProps {
 }
 
 const Signup: React.FC<SignUpProps> = ({ navigation }) => {
+  
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const colorScheme = useColorScheme()
-  console.log(colorScheme)
+  const { mutate } = useSignup()
 
   const handleSignUp = (): void => {
-    // Logic for sign-in authentication
-    console.log('Email:', email);
-    console.log('Password:', password);
+    if (email.length == 0) {
+      toast('Email cannot be empty')
+      return
+    }
+
+    if (password.length == 0 || password !== confirmPassword) {
+      toast('Passwords cannot be empty and must match')
+      return
+    }
+
+    mutate(
+      { email, password },
+      {
+        onSuccess: () => {
+          toast('Successfully signed up')
+          router.back()
+        },
+        onError: (error) => {
+          // console.log(error.response?.data?.errors)
+        }
+      }
+    )
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Sign Up</Text>
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Enter your email or phone number"
         value={email}
-        onChangeText={setEmail}
+        setValue={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        required
       />
-      <Text style={styles.required}>Required</Text>
 
-      <TextInput
-        style={styles.input}
+      <Input
+        type='passwordInput'
         placeholder="Enter your password"
         secureTextEntry
         value={password}
-        onChangeText={setPassword}
+        setValue={setPassword}
         autoCapitalize="none"
+        required
       />
-      <Text style={styles.required}>Required</Text>
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Confirm your password"
         secureTextEntry
-        value={password}
-        onChangeText={setPassword}
+        value={confirmPassword}
+        setValue={setConfirmPassword}
         autoCapitalize="none"
+        required
       />
-      <Text style={styles.required}>Required</Text>
 
-      <Button title="Sign In" onPress={handleSignUp} color="#000" />
+      <Button title="Sign Up" onPress={handleSignUp} color="#000" />
 
       <Text style={styles.alternativeText}>Alternative Sign-up Options</Text>
       <View style={styles.socialButtonsContainer}>
